@@ -1,0 +1,37 @@
+{
+    "manifest_version":2,
+    "name": "拼多多数据处理",
+    "version": "1.0",
+    "description": "拼多多数据处理",
+    "externally_connectable": {
+        "ids": [
+          "*"
+        ]
+    },
+    "browser_action": {
+        "default_title": "拼多多数据处理",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["./js/jquery.js","./js/xlsx.core.min.js", "./js/content.js"],
+            "css": ["./css/set.css"],
+            "run_at": "document_start"
+        }
+    ],
+	"background":
+	{
+		"page": "backgrounds.html"
+	},
+    "permissions": [
+        "<all_urls>",
+        "contextMenus",
+        "tabs",
+        "notifications"
+    ],
+    "web_accessible_resources":[
+        "js/test.js",
+        "js/jquery.js"
+    ]
+}

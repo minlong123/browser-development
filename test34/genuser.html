@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成账号</title>
+    <script src="js/jquery.js"></script>
+    <style>
+        .aaaa{
+            display:inline-block;
+            padding:20px;
+            background-color:green;
+            color:#FFF;
+            cursor: pointer;
+        }
+        .bbbb{
+            display:inline-block;
+            padding:20px;
+            background-color:blue;
+            color:#FFF;
+            cursor: pointer;
+        }
+        .active{
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    
+    <textarea name="" id="allv" cols="80" rows="30" placeholder="输入全球账号"></textarea>
+    <textarea name="" id="allvsss" cols="80" rows="30" placeholder="输入steam账号"></textarea>
+
+    <br>
+    <!-- <div class="aaaa active" data-type="1">输入全球账号</div>
+    <div class="aaaa" data-type="2">输入steam账号</div>
+    <div class="geners bbbb">处理</div> -->
+    <div class="gggg bbbb">生成账号格式</div>
+<script>
+
+    let type =1;
+    let quanqiu="";
+    let steam=""
+
+    let quanuser=[];
+    let quanpass=[];
+    let steamuser=[];
+    let steampas=[];
+
+    // $(".aaaa").click(function(){
+
+    //     type=$(this).data("type");
+    //     $(".aaaa").removeClass("active");
+    //     $(this).addClass("active");
+
+    // })
+
+    function allact(){
+
+        let lins=[];
+        let arrst="";
+        for(let i =0;i<quanuser.length;i++){
+
+            if(steamuser[i] == null || steamuser[i]=="" || steamuser[i] == undefined){
+                break;
+            }
+
+            if(i != quanuser.length -1){
+                arrst+= '["'+quanuser[i]+'","'+quanpass[i]+'","'+steamuser[i]+'","'+steampas[i]+'"],\n';
+            }else{
+                arrst+= '["'+quanuser[i]+'","'+quanpass[i]+'","'+steamuser[i]+'","'+steampas[i]+'"]';
+            }
+            
+        }
+        console.log(arrst);
+        $('#allv').val(arrst);
+    }
+
+    $(".gggg").click(function(){
+
+
+
+        // 全球账号
+        // console.log($('#allv').val());
+        quanqiu=$('#allv').val();
+        if(quanqiu == ""){
+            return;
+        }
+        // console.log(quanqiu.split(/[\r\n\r\n]+/));
+        allllss=quanqiu.split(/[\r\n\r\n]+/);
+
+
+        allllss.forEach((item,index)=>{
+            
+            if(item){
+                quanuser.push(item.split(/[\s]+/)[1])
+                quanpass.push(item.split(/[\s]+/)[0])
+            }
+
+        })
+        console.log(quanuser)
+        console.log(quanpass)
+
+
+
+
+
+        // steam账号
+        steam=$('#allvsss').val();
+        if(steam == ""){
+            return;
+        }
+        let linshisteam=steam.split(/[\r\n\r\n]+/);
+        
+
+        linshisteam.forEach((item,index)=>{
+            
+            if(item){
+                steamuser.push(item.split(/[\s]+/)[0])
+                steampas.push(item.split(/[\s]+/)[1])
+            }
+
+        })
+
+        console.log(steamuser);
+        console.log(steampas);
+
+     
+
+
+
+
+        allact();
+
+    })
+
+
+
+    
+</script>
+</body>
+</html>
